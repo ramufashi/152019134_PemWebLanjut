@@ -139,3 +139,71 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+.article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.9;
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.article-header h1 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.date {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  max-height: 500px;
+  object-fit: cover;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.article-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.article-content :global(h2) {
+  margin-top: 2rem;
+  color: var(--primary);
+}
+
+.article-content :global(img) {
+  display: block;
+  max-width: 100%;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+.article-content :global(p) {
+  margin-bottom: 1.25rem;
+}

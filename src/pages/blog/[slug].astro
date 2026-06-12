@@ -1,0 +1,178 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MainLayout title={post.data.title}>
+  <div class="container article">
+    <a href="/blog" class="back-link">
+      ← Kembali
+    </a>
+
+    <header class="article-header">
+      <h1>{post.data.title}</h1>
+
+      <p class="date">
+        {post.data.pubDate?.toLocaleDateString("id-ID", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
+
+      {
+        post.data.heroImage && (
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            class="hero"
+          />
+        )
+      }
+    </header>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+.article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.back-link {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.75rem 1.25rem;
+
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+
+  border-radius: 8px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Shine effect */
+.back-link::before {
+  content: "";
+
+  position: absolute;
+  top: -20%;
+  left: -200%;
+
+  width: 80px;
+  height: 140%;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  filter: blur(10px);
+  transform: rotate(20deg);
+
+  pointer-events: none;
+}
+
+.back-link:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.back-link:hover::before {
+  animation: backLinkShine 0.7s ease forwards;
+}
+
+.back-link:active {
+  transform: translateY(-1px);
+}
+
+@keyframes backLinkShine {
+  0% {
+    left: -200%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 200%;
+    opacity: 0;
+  }
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.article-header h1 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.date {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  max-height: 500px;
+  object-fit: cover;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.article-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.article-content :global(h2) {
+  margin-top: 2rem;
+  color: var(--primary);
+}
+
+.article-content :global(img) {
+  display: block;
+  max-width: 100%;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+.article-content :global(p) {
+  margin-bottom: 1.25rem;
+}
+</style>

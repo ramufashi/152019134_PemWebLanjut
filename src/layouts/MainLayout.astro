@@ -1,0 +1,290 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo1.jpg";
+import heroImage from "../assets/header.jpg";
+const { title = "BPR Mangun Pundiyasa" } = Astro.props;
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --secondary: #f5f7fa;
+      --accent: #d9e8f5;
+      --text: #1f2937;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: white;
+      line-height: 1.6;
+    }
+
+    header {
+	  position: sticky;
+	  top: 0;
+	  z-index: 1000;
+
+	  background: var(--primary);
+	  backdrop-filter: blur(12px);
+	  -webkit-backdrop-filter: blur(12px);
+
+	  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+	  color: white;
+	  padding: 1rem 2rem;
+
+	  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	}
+
+    nav {
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+
+	  max-width: 1200px;
+	  margin: 0 auto;
+	}
+
+    .logo-link {
+	  text-decoration: none;
+	  color: inherit;
+	  transition: transform 0.25s ease;
+	}
+
+	.logo-link:hover {
+	  transform: scale(1.05);
+	}
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+	
+	.logo-link {
+	  text-decoration: none;
+	  color: inherit;
+	}
+
+	.logo {
+	  display: flex;
+	  align-items: center;
+	  gap: 0.75rem;
+	}
+
+	.logo-link:hover {
+	  opacity: 0.9;
+	}
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links {
+	  display: flex;
+	  gap: 1.5rem;
+	}
+
+	.nav-links a {
+	  position: relative;
+	  overflow: hidden;
+
+	  color: white;
+	  text-decoration: none;
+	  font-weight: 600;
+
+	  padding: 0.5rem 1rem;
+	  border-radius: 999px;
+
+	  transition:
+		transform 0.25s ease,
+		background-color 0.25s ease,
+		box-shadow 0.25s ease;
+	}
+
+	/* Shine effect */
+	.nav-links a::before {
+	  content: "";
+	  position: absolute;
+
+	  top: -20%;
+	  left: -200%;
+
+	  width: 80px;
+	  height: 140%;
+
+	  background: rgba(255, 255, 255, 0.35);
+
+	  filter: blur(10px);
+	  transform: rotate(20deg);
+
+	  transition: left 0.7s ease;
+	}
+
+	.nav-links a:hover {
+	  transform: translateY(-3px);
+
+	  background: rgba(255, 255, 255, 0.15);
+
+	  box-shadow:
+		0 8px 20px rgba(0, 0, 0, 0.15),
+		0 0 12px rgba(255, 255, 255, 0.2);
+	}
+
+	.nav-links a::before {
+	  content: "";
+
+	  position: absolute;
+	  top: 0;
+	  left: -50%;
+
+	  width: 50%;
+	  height: 100%;
+
+	  background: linear-gradient(
+		120deg,
+		transparent,
+		rgba(255, 255, 255, 0.5),
+		transparent
+	  );
+
+	  transform: skewX(-25deg) translateX(-300%);
+	  pointer-events: none;
+	}
+
+	.nav-links a:hover::before {
+	  animation: navShine 0.7s ease forwards;
+	}
+
+	@keyframes navShine {
+	  0% {
+		transform: skewX(-25deg) translateX(-300%);
+		opacity: 0;
+	  }
+
+	  15% {
+		opacity: 1;
+	  }
+
+	  100% {
+		transform: skewX(-25deg) translateX(600%);
+		opacity: 0;
+	  }
+	}
+
+	/* Underline animation */
+	.nav-links a::after {
+	  content: "";
+
+	  position: absolute;
+	  left: 20%;
+	  bottom: 6px;
+
+	  width: 60%;
+	  height: 2px;
+
+	  background: white;
+
+	  transform: scaleX(0);
+	  transform-origin: center;
+
+	  transition: transform 0.25s ease;
+	}
+
+	.nav-links a:hover::after {
+	  transform: scaleX(1);
+	}
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 2rem;
+    }
+
+    footer {
+	  background: var(--primary);
+	  color: white;
+	  text-align: center;
+	  padding: 1rem;
+	  margin-top: 4rem;
+	}
+
+	footer a,
+	footer a:visited {
+	  color: white;
+	  text-decoration: none;
+	}
+
+	footer a:hover {
+	  color: rgba(255, 255, 255, 0.8);
+	  text-decoration: underline;
+	}
+
+	footer a:active {
+	  color: white;
+	}
+	
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+		<a href="/" class="logo-link">
+		  <div class="logo">
+			<Image
+			  src={logo}
+			  alt="Logo BPR Mangun Pundiyasa"
+			  width={50}
+			  height={50}
+			/>
+			<h2>BPR Mangun Pundiyasa</h2>
+		  </div>
+		 </a>
+
+      <div class="nav-links">
+          <a href="/">Beranda</a>
+          <a href="/services">Layanan</a>
+          <a href="/blog">Blog</a>
+          <a href="/contact">Hubungi Kami</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+	<p>Bank merupakan peserta penjaminan LPS.</p>
+<p>Maksimum nilai simpanan yang dijamin LPS per nasabah per bank adalah Rp 2 Miliar.<p>
+
+<p>PT. BPR Mangun Pundiyasa Berizin dan diawasi (OJK) Otoritas Jasa Keuangan.</p>
+
+<p>Informasi tingkat Bunga Penjaminan: <a href="https://apps.lps.go.id/BankPesertaLPSRate" https://apps.lps.go.id/BankPesertaLPSRate>https://apps.lps.go.id/BankPesertaLPSRate</a></p>
+    <h3><br>© 2026 PT. BPR Mangun Pundiyasa</h3>
+  </footer>
+</body>
+</html>

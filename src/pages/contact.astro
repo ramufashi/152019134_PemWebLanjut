@@ -1,0 +1,114 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+---
+
+<MainLayout title="Kontak Kami">
+    <section class="hero">
+      <h1>Hubungi Kami</h1>
+      <p>
+        Kami siap membantu Anda terkait informasi produk, layanan, maupun
+      kebutuhan perbankan lainnya. Silakan hubungi kami melalui informasi
+      berikut atau kunjungi kantor kami secara langsung.
+      </p>
+    </section>
+  
+	<section class="container">
+    <div class="contact-grid">
+      <div class="card">
+        <h2>📍 Alamat Kantor</h2>
+        <p>
+          PT. BPR Mangun Pundiyasa<br />
+		  Jl Jend. Ahmad Yani no. 221<br />
+		  Kav 15-E, Ruko Segitiga Mas<br />
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>☎ Informasi Kontak</h2>
+        <p>
+          <strong>Telepon:</strong> 022-7231010<br />
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⏱️ Jam Operasional</h2>
+        <p>
+          <strong>Senin - Jumat:</strong> 08.00 - 17.00 WIB<br />
+          <strong>Sabtu, Minggu & Hari Libur Nasional:</strong> Tutup
+        </p>
+      </div>
+    </div>
+
+    <div class="map-section">
+	  <h2>Lokasi Kantor</h2>
+
+	  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.77580484851!2d107.62386307480952!3d-6.917385493082209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7d209be0957%3A0x733b4c91fbfb1071!2sBPR%20Mangun%20Pundiyasa!5e0!3m2!1sen!2sid!4v1780943081387!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </iframe>
+	</div>
+  </section>
+</MainLayout>
+
+<style>
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  section h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+	  transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+  }
+
+	.card:hover {
+	  transform: translateY(-8px);
+
+	  box-shadow:
+		0 12px 30px rgba(0,0,0,0.12);
+	}
+
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+	.map-section {
+	 margin-top: 2rem;
+	 text-align: center;
+	}
+
+	.map-section iframe {
+	  border-radius: 12px;
+	  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+	}
+</style>
